@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Keren 🎀</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ff69b4);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        #countdown {
+            position: absolute;
+            top: 20px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            z-index: 20;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 550px;
+            z-index: 10;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.6s ease;
+        }
+
+        .hidden { display: none; opacity: 0; }
+        .visible { display: block; animation: fadeIn 0.8s forwards; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        h1 { font-size: 2.5em; margin-bottom: 15px; font-weight: 800; text-transform: uppercase; }
+        
+        /* No punctuation paragraph */
+        .heart-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            text-align: center;
+            margin: 20px 0;
+            text-transform: lowercase;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 15px 40px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            background: white;
+            color: #ff69b4;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        /* Initial Heart Styling */
+        .initial-heart {
+            font-size: 8rem;
+            position: relative;
+            display: inline-block;
+            animation: beat 1.2s infinite;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
+        }
+
+        .initials-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .caps-line {
+            font-size: 1.5em;
+            font-weight: 900;
+            margin-top: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown">loading birthday magic</div>
+
+    <div class="container">
+        <div id="screen1" class="card">
+            <h1>happy birthday keren</h1>
+            <p>from gurman</p>
+            <button onclick="nextScreen(1, 2)">click me keren</button>
+        </div>
+
+        <div id="screen2" class="card hidden">
+            <h1>to keren</h1>
+            <div class="heart-text">
+                ive been trying to figure out the right way to say this but honestly words usually fall short when it comes to you theres a certain kind of light you bring into a room and my life that i havent found anywhere else youre turning 15 and looking at the person youre becoming is genuinely amazing your beauty isnt just about what everyone else sees its in the way you think how you make people feel and that spark you have thats just uniquely you
+                <br><br>
+                ill be real with you ive realized that ive reached a point where i cant really imagine my day to day life without you in it youve become my person whether its the big moments or just the random quiet parts of the day everything feels more complete when youre involved you make the good days better and the bad days actually bearable
+                <br><br>
+                so on your birthday i just wanted you to know how much youre truly appreciated you deserve the world today i hope this year is as incredible as you are happy birthday keren you mean everything to me
+            </div>
+            <button onclick="nextScreen(2, 3)">last thing</button>
+        </div>
+
+        <div id="screen3" class="card hidden">
+            <div class="initial-heart">
+                💖
+                <div class="initials-overlay">K + G</div>
+            </div>
+            <div class="caps-line">I M GRATEFUL FOR HAVING U IN MY LIFE BABY</div>
+            <p style="margin-top: 20px; font-weight: bold;">FOREVER GURMAN</p>
+        </div>
+    </div>
+
+    <script>
+        const targetDate = new Date("March 31, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${mins}m ${secs}s until your day`;
+        }, 1000);
+
+        function nextScreen(current, next) {
+            const currEl = document.getElementById('screen' + current);
+            const nextEl = document.getElementById('screen' + next);
+            
+            currEl.style.opacity = '0';
+            setTimeout(() => {
+                currEl.style.display = 'none';
+                nextEl.classList.remove('hidden');
+                nextEl.classList.add('visible');
+                
+                confetti({ 
+                    particleCount: 150, 
+                    spread: 80, 
+                    origin: { y: 0.6 }, 
+                    colors: ['#ffffff', '#ff69b4', '#ff1493'] 
+                });
+            }, 500);
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
