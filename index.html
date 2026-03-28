@@ -44,7 +44,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- RAIN ANIMATION --- */
+        /* --- RAIN & HEART ANIMATION --- */
         .rain {
             position: absolute;
             width: 100%;
@@ -58,6 +58,14 @@
             background: rgba(255, 255, 255, 0.4);
             width: 1px;
             height: 20px;
+            top: -20px;
+            animation: fall linear infinite;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
             top: -20px;
             animation: fall linear infinite;
         }
@@ -159,25 +167,35 @@
 
         button:hover { transform: scale(1.05); background: #fff1f8; }
 
-        .initial-heart {
-            font-size: 5rem;
-            position: relative;
-            display: inline-block;
+        .final-heart-container {
+            margin-bottom: 20px;
+        }
+
+        .big-heart {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 10px;
             animation: beat 1.2s infinite;
         }
 
-        .initials-overlay {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -40%);
-            font-size: 1.2rem;
+        .initials-text {
+            font-size: 2rem;
             font-weight: 900;
+            letter-spacing: 5px;
             color: white;
+            display: block;
         }
 
         @keyframes beat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
+            50% { transform: scale(1.1); }
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-top: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .footer-note { font-size: 0.8rem; opacity: 0.7; margin-top: 10px; text-align: center; }
@@ -244,28 +262,39 @@
         </div>
 
         <div id="screen5" class="card hidden">
-            <div class="initial-heart">
-                💖
-                <div class="initials-overlay">K + G</div>
+            <div class="final-heart-container">
+                <span class="big-heart">💖</span>
+                <span class="initials-text">K + G</span>
             </div>
             <h1>I'm Grateful For You</h1>
-            <p>I'm so lucky to have you in my life, baby.</p>
+            <p class="question-text">Will you be my girlfriend?</p>
             <p style="font-weight: 800; letter-spacing: 2px; margin-top: 20px;">FOREVER, GURMAN</p>
             <p class="footer-note">March 31, 2026</p>
         </div>
     </div>
 
     <script>
-        // --- RAIN GENERATOR ---
+        // --- RAIN & HEART GENERATOR ---
         const rainContainer = document.getElementById('rainContainer');
-        for (let i = 0; i < 60; i++) {
-            const drop = document.createElement('div');
-            drop.classList.add('drop');
-            drop.style.left = Math.random() * 100 + 'vw';
-            drop.style.animationDuration = (Math.random() * 0.7 + 0.5) + 's';
-            drop.style.animationDelay = Math.random() * 2 + 's';
-            rainContainer.appendChild(drop);
+        function createRain() {
+            for (let i = 0; i < 80; i++) {
+                const isHeart = Math.random() > 0.8;
+                const element = document.createElement('div');
+                
+                if (isHeart) {
+                    element.classList.add('floating-heart');
+                    element.innerHTML = '❤';
+                } else {
+                    element.classList.add('drop');
+                }
+                
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                element.style.animationDelay = Math.random() * 5 + 's';
+                rainContainer.appendChild(element);
+            }
         }
+        createRain();
 
         // --- COUNTDOWN ---
         const targetDate = new Date("March 31, 2026 00:00:00").getTime();
@@ -283,14 +312,12 @@
             document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${mins}m ${secs}s until your day`;
         }, 1000);
 
-        // --- EXPERIENCE START ---
         function startExperience() {
             const audio = document.getElementById('birthdayAudio');
-            audio.play().catch(e => console.log("Audio play failed until more interaction"));
+            audio.play().catch(e => console.log("Audio play failed"));
             nextScreen(1, 2);
         }
 
-        // --- NAVIGATION ---
         function nextScreen(current, next) {
             const currEl = document.getElementById('screen' + current);
             const nextEl = document.getElementById('screen' + next);
